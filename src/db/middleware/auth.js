@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const fs = require('fs')
 const path = require("path");
-const privateKey = fs.readFileSync(path.resolve(__dirname, "../../../configuration/keys/private-key.json"));
+// const privateKey = fs.readFileSync(path.resolve(__dirname, "../../../configuration/keys/private-key.json"));
 
 'use strict';
 const auth = async (req, res, next) => {
