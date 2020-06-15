@@ -7,7 +7,7 @@ const privateKey = fs.readFileSync(path.resolve(__dirname, "../../../configurati
 'use strict';
 const auth = async (req, res, next) => {
     try {
-        const key = JSON.parse(privateKey.toString()); 
+        const key = JSON.parse(process.env.PRIMARY_KEY); 
         const token = req.header('Authorization').replace('Bearer', '').trim()
         try {
             const decoded = jwt.verify(token, key.key)
