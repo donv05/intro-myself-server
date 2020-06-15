@@ -2,10 +2,11 @@
   "name": "weather-app",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "eco",
-    "dev": "env-cmd ./configuration/config.env nodemon src/index.js"
+    "start": "",
+    "dev": "./node_modules/.bin/env-cmd -f ./configuration/config.env nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
