@@ -1,16 +1,13 @@
 const express = require('express');
 const app = express()
-// const path = require('path');
 require('./db/mongoose')
 const user = require('./routes/user')
 const task = require('./routes/task')
 const skill = require('./routes/skill')
 const token = require('./routes/token')
 const bodyParser = require('body-parser')
-// const Task = require('./db/models/task')
-// const User = require('./db/models/user')
 
-// Parse application/x-www-form-urlencoded
+
 // app.use(bodyParser.urlencoded({ extended: true }))
 // Parse application/json
 app.use(bodyParser.json())
