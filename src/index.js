@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express()
 // const path = require('path');
-const port = 3000
 require('./db/mongoose')
 const user = require('./routes/user')
 const task = require('./routes/task')
@@ -20,7 +19,7 @@ app.use('/users', user)
 app.use('/tasks', task)
 app.use('/skills', skill)
 app.use('/auth', token)
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+app.listen(process.env.PORT, () => console.log(`Example app listening at http://localhost:${process.env.PORT}`))
 
 const main = async () => {
     // const task = await Task.findById('5ecf59edb350eb23e838f4ec')
