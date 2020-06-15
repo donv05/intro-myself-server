@@ -7,7 +7,8 @@ const path = require("path");
 'use strict';
 const auth = async (req, res, next) => {
     try {
-        const key = JSON.parse(process.env.PRIMARY_KEY); 
+        // const key = JSON.parse(process.env.PRIMARY_KEY); 
+        const key = process.env.PRIMARY_KEY; 
         const token = req.header('Authorization').replace('Bearer', '').trim()
         try {
             const decoded = jwt.verify(token, key.key)
