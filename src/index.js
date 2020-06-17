@@ -6,7 +6,9 @@ const task = require('./routes/task')
 const skill = require('./routes/skill')
 const token = require('./routes/token')
 const bodyParser = require('body-parser')
-
+const cors = require('cors')
+ 
+app.use(cors())
 
 // app.use(bodyParser.urlencoded({ extended: true }))
 // Parse application/json
