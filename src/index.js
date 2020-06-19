@@ -4,17 +4,19 @@ require('./db/mongoose')
 const user = require('./routes/user')
 const task = require('./routes/task')
 const skill = require('./routes/skill')
+const project = require('./routes/project')
 const token = require('./routes/token')
 const bodyParser = require('body-parser')
 
 
 // app.use(bodyParser.urlencoded({ extended: true }))
 // Parse application/json
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
 app.use(express.json())
 app.use('/users', user)
 app.use('/tasks', task)
 app.use('/skills', skill)
+app.use('/project', project)
 app.use('/auth', token)
 app.listen(process.env.PORT, () => console.log(`Example app listening at http://localhost:${process.env.PORT}`))
 
