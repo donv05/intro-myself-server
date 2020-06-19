@@ -51,6 +51,11 @@ const Project = mongoose.model('Projects', {
         trim: true,
         required: false,
     },
+    projectDescription: {
+        type: String,
+        trim: true,
+        required: false,
+    },
     startDate: {
         type: String,
         trim: true,
