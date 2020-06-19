@@ -7,10 +7,12 @@ const skill = require('./routes/skill')
 const project = require('./routes/project')
 const token = require('./routes/token')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 
 // app.use(bodyParser.urlencoded({ extended: true }))
 // Parse application/json
+app.use(cors())
 app.use(bodyParser.json())
 app.use(express.json())
 app.use('/users', user)
