@@ -37,7 +37,7 @@ const Project = mongoose.model('Projects', {
         required: false,
     },
     projectTeamSize: {
-        type: String,
+        type: Number,
         trim: true,
         required: false,
     },
@@ -47,6 +47,11 @@ const Project = mongoose.model('Projects', {
         required: false,
     },
     projectEndDate: {
+        type: String,
+        trim: true,
+        required: false,
+    },
+    projectDescription: {
         type: String,
         trim: true,
         required: false,
@@ -66,11 +71,12 @@ const Project = mongoose.model('Projects', {
         trim: true,
         required: false,
     },
-    skills: {
-        type: String,
-        trim: true,
-        required: false,
-    },
+    skills: [{
+        skillId: String,
+        skillName: String,
+        isDeleted: Boolean
+
+    }],
     projectRoleId: {
         type: String,
         trim: true,
@@ -87,7 +93,7 @@ const Project = mongoose.model('Projects', {
         required: false,
     },
     isDeleted: {
-        type: String,
+        type: Boolean,
         trim: true,
         required: false,
     },
@@ -97,20 +103,25 @@ const Project = mongoose.model('Projects', {
         required: false,
     },
     projectJobTitles: {
-        type: String,
+        type: [String],
         trim: true,
         required: false,
     },
     workingProcess: {
-        type: String,
+        type: [String],
         trim: true,
         required: false,
     },
-    resumeProjectRole: {
-        type: String,
-        trim: true,
-        required: false,
-    },
+    // resumeProjectRole: {
+    //     type: [String],
+    //     trim: true,
+    //     required: false,
+    // },
+    resumeProjectRole: [{
+        resumeProjectRoleMappingId: String,
+        projectRoleId: String,
+        projectRoleDisplayName: String
+    }],
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         require: true,

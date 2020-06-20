@@ -1,24 +1,36 @@
+const cors = require('cors')
 const express = require('express');
 const app = express()
 require('./db/mongoose')
 const user = require('./routes/user')
 const task = require('./routes/task')
 const skill = require('./routes/skill')
+const project = require('./routes/project')
 const token = require('./routes/token')
 const bodyParser = require('body-parser')
+<<<<<<< HEAD
 const cors = require('cors')
  
 app.use(cors())
+=======
+>>>>>>> aa91f551772c7a54e51b165978391c742a88426f
 
 // app.use(bodyParser.urlencoded({ extended: true }))
-// Parse application/json
+app.use(cors())
 app.use(bodyParser.json())
 app.use(express.json())
 app.use('/users', user)
 app.use('/tasks', task)
 app.use('/skills', skill)
+app.use('/project', project)
 app.use('/auth', token)
 app.listen(process.env.PORT, () => console.log(`Example app listening at http://localhost:${process.env.PORT}`))
+
+
+
+
+
+
 
 // const main = async () => {
 //     // const task = await Task.findById('5ecf59edb350eb23e838f4ec')

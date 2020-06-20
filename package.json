@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "eco",
-    "start": "node src/index.js",
-    "dev": "./node_modules/.bin/env-cmd -f ./configuration/config.env nodemon src/index.js"
+    "start": "./node_modules/.bin/env-cmd -f ./configuration/config.env nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
