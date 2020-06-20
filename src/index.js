@@ -8,12 +8,7 @@ const skill = require('./routes/skill')
 const project = require('./routes/project')
 const token = require('./routes/token')
 const bodyParser = require('body-parser')
-<<<<<<< HEAD
 const cors = require('cors')
- 
-app.use(cors())
-=======
->>>>>>> aa91f551772c7a54e51b165978391c742a88426f
 
 // app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
