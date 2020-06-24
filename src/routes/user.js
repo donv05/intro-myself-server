@@ -3,6 +3,10 @@ const router = express.Router()
 const User = require('../db/models/user')
 const bcrypt = require('bcryptjs');
 const auth = require('../db/middleware/auth')
+
+const multer  = require('multer')
+var upload = multer({ dest: 'uploads/' , limits: { fieldSize: 1 * 1024 * 1024 }})
+
 // middleware that is specific to this router
 // router.use(function timeLog (req, res, next) {
 //   console.log('Time: ', Date.now())
@@ -56,8 +60,7 @@ router.post('/login', async (req, res) => {
         const userInf = await user.getPublicInformation()
         res.status(201).send({user: userInf, token})
     } catch (error) {
-        console.log('error',error.error)
-        res.status(500).json(error)
+        res.status(404).json({code: 404,  message: 'Login failure', error: error})
     }
 
 })
@@ -92,7 +95,6 @@ router.get('/:id', async (req, res) => {
         if (!data) {
             return res.status(404).json(err)
         }
-        console.log(data)
         res.status(201).send(data)
     } catch (error) {
         res.status(500).json(error)
@@ -100,14 +102,19 @@ router.get('/:id', async (req, res) => {
 })
 
 
-router.put('/:id', async (req, res) => {
-    const user = new User(req.body)
+router.put('/:id', upload.single('avatar'), async (req, res) => {
+    const _id = req.params.id
     try {
-        const data = await user.save()
+        const options = {
+            new: true,
+            runValidators: true,
+        }
+        const data = await User.findOneAndUpdate({ _id: req.params.id }, req.body)
         if (!data) {
             return res.status(404).json(err)
         }
-        res.status(201).send(data)
+        const userInf = await data.getPublicInformation()
+        res.status(201).send({user: userInf})
     } catch (error) {
         res.status(500).json(error)
     }

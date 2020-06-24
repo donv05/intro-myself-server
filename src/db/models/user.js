@@ -9,6 +9,19 @@ const userSchema = new mongoose.Schema({
         required: [true, `Username's required`],
         trim: true
     },
+    first_name: {
+        type: String,
+        required: [true, `First name's required`],
+        trim: true
+    },
+    last_name: {
+        type: String,
+        required: [true, `Last Name's required`],
+        trim: true
+    },
+    address: {
+        type: String
+    },
     age: {
         type: Number,
         default: 0,
@@ -41,10 +54,18 @@ const userSchema = new mongoose.Schema({
             message: props => `Password is greateer than 6!`
         },
     },
+    avatar: {
+        type: String
+    },
     tokens: [{
         token: {
             type: String,
         }
+    }],
+    role_id: [{
+        type: mongoose.Schema.Types.ObjectId,
+        require: true,
+        ref: 'Role'
     }]
 });
 
@@ -63,9 +84,10 @@ userSchema.methods.generateAuthToken = async function () {
 
 userSchema.methods.getPublicInformation = async function () {
     const user = this
+    console.log(user)
     const userObject = user.toObject();
     delete userObject.password
-    delete userObject._id
+    // delete userObject._id
     delete userObject.tokens
     return userObject;
 
