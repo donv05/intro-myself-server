@@ -55,8 +55,10 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
-        const  user = await User.findByCredentials(req.body.email, req.body.password)
+        const user = await User.findByCredentials(req.body.email, req.body.password)
+        console.log(user)
         const token = await user.generateAuthToken()
+        console.log(token)
         const userInf = await user.getPublicInformation()
         res.status(201).send({user: userInf, token})
     } catch (error) {
@@ -109,7 +111,7 @@ router.put('/:id', upload.single('avatar'), async (req, res) => {
             new: true,
             runValidators: true,
         }
-        const data = await User.findOneAndUpdate({ _id: req.params.id }, req.body)
+        const data = await User.findOneAndUpdate({ _id: req.params.id }, req.body, options)
         if (!data) {
             return res.status(404).json(err)
         }

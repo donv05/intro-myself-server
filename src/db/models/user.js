@@ -84,7 +84,6 @@ userSchema.methods.generateAuthToken = async function () {
 
 userSchema.methods.getPublicInformation = async function () {
     const user = this
-    console.log(user)
     const userObject = user.toObject();
     delete userObject.password
     // delete userObject._id
@@ -116,7 +115,7 @@ userSchema.statics.findByToken = async (token) => {
 userSchema.pre('save', async function () {
     const user = this
     // user.password = await bcrypt.hash(user.password, 8)
-    console.log('Just before saving!')
+    // console.log('Just before saving!')
 });
 
 userSchema.pre('findOneAndUpdate', { document: true, query: false }, () => console.log('Hello from pre save'));
