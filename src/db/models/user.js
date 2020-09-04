@@ -62,10 +62,10 @@ const userSchema = new mongoose.Schema({
             type: String,
         }
     }],
-    role_id: [{
+    roles: [{
         type: mongoose.Schema.Types.ObjectId,
         require: true,
-        ref: 'Role'
+        ref: 'Roles'
     }]
 });
 
@@ -83,17 +83,18 @@ userSchema.methods.generateAuthToken = async function () {
 }
 
 userSchema.methods.getPublicInformation = async function () {
+
     const user = this
     const userObject = user.toObject();
     delete userObject.password
-    // delete userObject._id
+    //delete userObject._id
     delete userObject.tokens
     return userObject;
 
 }
 
 userSchema.statics.findByCredentials = async (email, password) => {
-    const user = await User.findOne({ email })
+    const user = await User.findOne({email}).populate('roles').exec()
     if (!user) {
         throw new Error('Unable to login!')
     }
